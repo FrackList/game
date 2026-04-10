@@ -1,0 +1,283 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #fff;
+}
+
+#game-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+#game-header {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.player-stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.player-stats span {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+#location-nav {
+    display: flex;
+    gap: 10px;
+}
+
+#location-nav button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#location-nav button:hover,
+#location-nav button.active {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Main Game Area */
+#game-area {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+#game-canvas {
+    background: #2c3e50;
+    border-radius: 10px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+#action-panel {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+    min-width: 200px;
+}
+
+#action-panel h3 {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.action-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.action-group button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.action-group button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.action-group button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Side Panels */
+#side-panels {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.panel {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 15px;
+    min-height: 200px;
+}
+
+.panel h3 {
+    margin-bottom: 15px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+}
+
+#inventory-list,
+#quest-list,
+#crafting-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.inventory-item,
+.quest-item,
+.craft-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inventory-item button,
+.craft-item button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.inventory-item button:hover,
+.craft-item button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Combat Log */
+#combat-log {
+    max-height: 300px;
+    overflow-y: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+}
+
+.log-entry {
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.log-entry.combat { color: #ff6b6b; }
+.log-entry.loot { color: #ffd93d; }
+.log-entry.quest { color: #6bcb77; }
+.log-entry.info { color: #4d96ff; }
+.log-entry.craft { color: #c56cf0; }
+
+/* Dialogs */
+dialog {
+    background: rgba(0, 0, 0, 0.95);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.dialog-content h3 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.dialog-content p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+#dialog-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#dialog-options button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+}
+
+#dialog-options button:hover {
+    transform: translateX(5px);
+}
+
+#close-dialog,
+#confirm-craft,
+#cancel-craft {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#confirm-craft {
+    background: linear-gradient(135deg, #6bcb77 0%, #4d96ff 100%);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Location backgrounds */
+.location-city { background: linear-gradient(180deg, #87CEEB 0%, #4682B4 100%); }
+.location-plains { background: linear-gradient(180deg, #87CEEB 0%, #90EE90 100%); }
+.location-forest { background: linear-gradient(180deg, #228B22 0%, #006400 100%); }
+.location-cave { background: linear-gradient(180deg, #696969 0%, #2F4F4F 100%); }
