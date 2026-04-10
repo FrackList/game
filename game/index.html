@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser MMORPG</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Header UI -->
+        <header id="game-header">
+            <div class="player-stats">
+                <span id="player-name">Игрок</span>
+                <span>Уровень: <span id="player-level">1</span></span>
+                <span>HP: <span id="player-hp">100</span>/<span id="player-max-hp">100</span></span>
+                <span>XP: <span id="player-xp">0</span>/<span id="player-next-xp">100</span></span>
+                <span>Золото: <span id="player-gold">0</span></span>
+            </div>
+            <nav id="location-nav">
+                <button data-location="city">🏰 Город</button>
+                <button data-location="plains">🌾 Равнина</button>
+                <button data-location="forest">🌲 Лес</button>
+                <button data-location="cave">⛏️ Пещера</button>
+            </nav>
+        </header>
+
+        <!-- Main Game Area -->
+        <main id="game-area">
+            <canvas id="game-canvas" width="800" height="500"></canvas>
+            
+            <!-- Action Panel -->
+            <aside id="action-panel">
+                <h3>Действия</h3>
+                <div id="combat-actions" class="action-group hidden">
+                    <button id="btn-attack">⚔️ Атака</button>
+                    <button id="btn-heal">💚 Лечение</button>
+                    <button id="btn-flee">🏃 Побег</button>
+                </div>
+                <div id="exploration-actions" class="action-group hidden">
+                    <button id="btn-explore">🔍 Исследовать</button>
+                    <button id="btn-mine" class="hidden">⛏️ Добывать руду</button>
+                </div>
+                <div id="city-actions" class="action-group hidden">
+                    <button id="btn-rest">🛏️ Отдохнуть</button>
+                    <button id="btn-talk-npc">💬 Говорить с NPC</button>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Side Panels -->
+        <aside id="side-panels">
+            <!-- Inventory -->
+            <section class="panel" id="inventory-panel">
+                <h3>🎒 Инвентарь</h3>
+                <div id="inventory-list"></div>
+            </section>
+
+            <!-- Quests -->
+            <section class="panel" id="quests-panel">
+                <h3>📜 Квесты</h3>
+                <div id="quest-list"></div>
+            </section>
+
+            <!-- Crafting -->
+            <section class="panel" id="crafting-panel">
+                <h3>🔨 Крафт</h3>
+                <div id="crafting-list"></div>
+            </section>
+
+            <!-- Combat Log -->
+            <section class="panel" id="log-panel">
+                <h3>📋 Журнал</h3>
+                <div id="combat-log"></div>
+            </section>
+        </aside>
+
+        <!-- NPC Dialog Modal -->
+        <dialog id="npc-dialog">
+            <div class="dialog-content">
+                <h3 id="npc-name">NPC Имя</h3>
+                <p id="npc-text">Текст диалога...</p>
+                <div id="dialog-options"></div>
+                <button id="close-dialog">Закрыть</button>
+            </div>
+        </dialog>
+
+        <!-- Crafting Modal -->
+        <dialog id="crafting-modal">
+            <div class="dialog-content">
+                <h3>Скрафтить предмет</h3>
+                <div id="crafting-details"></div>
+                <button id="confirm-craft">Скрафтить</button>
+                <button id="cancel-craft">Отмена</button>
+            </div>
+        </dialog>
+    </div>
+
+    <!-- Game Modules -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
